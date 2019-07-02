@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-//const config = require('config');
+const config = require('config');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 var logger = require('morgan');
@@ -19,8 +19,8 @@ app.use('/', indexRouter);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//const db = config.get('mongoURI'); //need to set up config folder and line 3
-const db = "mongodb+srv://testy-mc-test:12345@cluster0-8gv6v.mongodb.net/test?retryWrites=true&w=majority";
+const db = config.get('mongoURI'); //need to set up config folder and line 3
+//const db = "mongodb+srv://testy-mc-test:12345@cluster0-8gv6v.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose.connect(db, { 
 	useNewUrlParser: true, 
