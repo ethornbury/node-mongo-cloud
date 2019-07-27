@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include partials/header %>
+    </head>
+    <body>
+          <div class="w3-container l3 w3-text-grey w3-padding" >
+            <% include partials/nav %>
+
+                <div class="w3-row w3-grayscale">
+                    <div class="w3-col l1">
+                        <p></p>
+                    </div>
+                    <div class="w3-col l3">
+                        <h2>Add Contact</h2>
+
+                        <form action="/user-add" method="post" class="w3-container">        
+                            <div class="item">
+                                <label for="firstname">Firstname</label>
+                                <br />
+                                <input name="firstname" type="text" class="w3-input"/>
+                                <br />
+								<label for="lastname">Lastname</label>
+                                <br />
+                                <input name="lastname" type="text" class="w3-input"/>
+                                <br />
+                                <label for="username">Username</label>
+                                <br />
+                                <input name="username" type="text" class="w3-input"/>
+                                <br />
+                                <label for="password">Password</label>
+                                <br />
+                                <input name="password" type="text" class="w3-input"/>
+								<br />
+                                <button class="w3-btn w3-teal">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="w3-col l3">
+                        <h2>A List</h2>
+                        <ul>
+
+                        </ul>
+                    </div>
+                    <div class="w3-col l3">
+                        <h2>Another thing here</h2>
+
+                    </div>
+                </div>
+            <% include partials/footer %>
+          </div>
+  </body>
+</html>

@@ -12,13 +12,20 @@
                         <p></p>
                     </div>
                     <div class="w3-col l3">
-                        <h2>Index page</h2>
+                        <h2>User List</h2>
+						<% data.forEach(function(user){ %>
                         <ul>
-
+							<li>ID: <%= user._id %></li>
+							<li>Firstname: <%= user.firstname %></li>							
+							<li>Lastname: <%= user.lastname %></li>
+							<li>Admin status: <%= user.admin %></li>
+							<a href="/user/<%= user._id %>" class="w3-button w3-teal" >show</a>
+							<a href="/user-delete/<%= user._id %>" class="w3-button w3-teal" >delete</a>
                         </ul>
+						<% }); %> 
                     </div>
                     <div class="w3-col l3">
-                        <h2>Thing here</h2>
+                        <h2>A List</h2>
                         <ul>
 
                         </ul>

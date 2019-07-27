@@ -22,22 +22,6 @@ $ npm install body-parser
 ```
 
 
-To get to the mongo REPL
-```
-$ C:\Program Files\MongoDB\Server\4.0\bin\
-$ mongo
- 
-$ use conFusion 	//create DB if not there or use if there
-$ db   //check db name
-$ db.help();
-$ db.dishes		create or use a collection called 
-$ db.dishes.insert({"name": "pizza", "description": "Test"});
-$ db.dishes.find();
-$ db.dishes.find().pretty();
-$ var id = new ObjectId();
-$ id.getTimestamp();		//returns ISO date from _id
-$ exit 	//to exit the REPL
-```
 To open a cmp prompt in current folder: When inside the folder in explorer, shift and right-click
 Gitignore file [info here](https://stackoverflow.com/questions/10744305/how-to-create-gitignore-file)
 

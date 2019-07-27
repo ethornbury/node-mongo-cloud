@@ -1,14 +1,14 @@
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const Users = require('../models/users');
-const userRouter = express.Router();
-userRouter.use(bodyParser.json());
+const X = require('../models/xx');
+const xxRouter = express.Router();
+xxRouter.use(bodyParser.json());
 
-userRouter.route('/')
+xxRouter.route('/xx')
 //
 //all my routes here
 //
 
-var Users = mongoose.model('User', dishSchema);
-module.exports = Userss;
+var X = mongoose.model('X', xxSchema);
+module.exports = X;
