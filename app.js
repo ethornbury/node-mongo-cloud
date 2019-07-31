@@ -47,8 +47,6 @@ app.get('/users', function(req, res) {
 			console.log(err);
 		}else{
 			console.log(user);
-			//res.statusCode = 200;
-			//res.setHeader('content-Type', 'application/json');
 			res.render('users', {data: user, title: 'Users'})
 		}
 	});
@@ -58,6 +56,7 @@ app.get('/user-add', function(req, res) {
   res.render('user-add.ejs', {title: 'Add User'});
   console.log("add-user page now rendered");    // the log function is used to output data to the terminal. 
 });
+
 //taking data from a form in the views - post request
 app.post('/user-add', (req, res) => {
 	let firstname = req.body.firstname;
@@ -81,8 +80,6 @@ app.get('/user/:id', function(req, res) {
 			console.log(err);
 		}else{
 			console.log(user);
-			//res.statusCode = 200;
-			//res.setHeader('content-Type', 'application/json');
 			res.render('user-show', {user: user})
 		}
 	});
@@ -109,8 +106,67 @@ app.get('/user-delete/:id', function(req, res){
     }	
 });
 
-app.get('*', function(req, res) {  res.render('error');});
+// ---------update user
+app.get('/user-update/:id', function(req, res) {
+	let id = req.params.id;
+	console.log('made it here to the /user-update get function');
+	User.findById({"_id":req.params.id}, function(err, user){
+		if(err){
+			console.log(err);
+		}else{
+			console.log(user);
+			res.render('user-update', {user: user})
+		}
+	});
+});
 
+app.post('/user-update', function(req, res){
+	
+	console.log('user-update put function');
+	console.log('User: '+ req.params._id);
+	
+	User.updateOne({ _id: req.body._id }, 
+	//User.update({ _id: id }, 
+	{$set: {
+        firstname: req.body.firstname, 
+	    lastname: req.body.lastname,
+		username: req.body.username,
+		password: req.body.password
+		}
+	}, function (err, result) {
+		if (err) {
+		  console.log(err);
+		} else {
+		 console.log("Post Updated successfully");
+		 res.redirect('/users');
+		}
+	})
+});
+	
+
+	// if (id === null) {
+        // var err = new Error('User ' + id + ' does not exist!');
+        // err.status = 403;
+        // return next(err);
+      
+     // }else{
+		// //User.findByIdAndUpdate({"_id":req.params.id}, function(err, user){
+		// User.findByIdAndUpdate({"_id":req.params.id},{
+		// $set: {//_id: req.params.id,
+			// firstname: req.body.firstname, 
+			// lastname: req.body.lastname,
+			// username: req.body.username,
+			// password: req.body.password}
+			// }),				
+		// if(err){
+			// console.log(err);
+		// }else{
+			// console.log('User: '+ req.params.id+" updated");
+		// }
+	// }
+    // res.redirect('/users');
+
+app.get('*', function(req, res) {  res.render('error');});
 
 // We need to set the requirements for the application to run
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0" , function(){

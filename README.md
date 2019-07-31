@@ -3,7 +3,8 @@
 Using this [tutorial](https://medium.com/@bretcameron/mongodb-a-beginners-guide-8fca0c7787a4)
 
 ### Using cloud mongo DB: [Mongo DB](https://cloud.mongodb.com) 
-mongodb+srv://testy-mc-test:12345@cluster0-8gv6v.mongodb.net/test?retryWrites=true&w=majority
+mongodd
+srv://<username here>:<password here>@cluster0-8gv6v.mongodb.net/test?retryWrites=true&w=majority
 
 ```
 $ npm install express --save
