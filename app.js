@@ -118,54 +118,33 @@ app.get('/user-update/:id', function(req, res) {
 			res.render('user-update', {user: user})
 		}
 	});
+
+	console.log('user id', req.params.id);
 });
 
-app.post('/user-update', function(req, res){
+app.post('/user-update/:id', function(req, res){
 	
-	console.log('user-update put function');
-	console.log('User: '+ req.params._id);
-	
-	User.updateOne({ _id: req.body._id }, 
-	//User.update({ _id: id }, 
-	{$set: {
-        firstname: req.body.firstname, 
-	    lastname: req.body.lastname,
-		username: req.body.username,
-		password: req.body.password
-		}
-	}, function (err, result) {
-		if (err) {
-		  console.log(err);
-		} else {
-		 console.log("Post Updated successfully");
-		 res.redirect('/users');
-		}
-	})
+	console.log('user-update post function');
+	let id = req.params.id;
+	console.log('User: ', req.params.id);	
+	User.findByIdAndUpdate({_id: req.params.id},
+		{$set: {
+			firstname: req.body.firstname, 
+			lastname: req.body.lastname,
+			username: req.body.username,
+			password: req.body.password
+			}
+		}, function (err, result) {
+			if (err) {
+			  console.log(err);
+			} else {
+			 console.log("Post Updated successfully");
+			 res.redirect('/users');
+			}		
+		})
+		
 });
 	
-
-	// if (id === null) {
-        // var err = new Error('User ' + id + ' does not exist!');
-        // err.status = 403;
-        // return next(err);
-      
-     // }else{
-		// //User.findByIdAndUpdate({"_id":req.params.id}, function(err, user){
-		// User.findByIdAndUpdate({"_id":req.params.id},{
-		// $set: {//_id: req.params.id,
-			// firstname: req.body.firstname, 
-			// lastname: req.body.lastname,
-			// username: req.body.username,
-			// password: req.body.password}
-			// }),				
-		// if(err){
-			// console.log(err);
-		// }else{
-			// console.log('User: '+ req.params.id+" updated");
-		// }
-	// }
-    // res.redirect('/users');
-
 app.get('*', function(req, res) {  res.render('error');});
 
 // We need to set the requirements for the application to run
