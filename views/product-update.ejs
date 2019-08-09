@@ -12,27 +12,26 @@
                         <p></p>
                     </div>
                     <div class="w3-col l3">
-                        <h2>Add Contact</h2>
+                        <h2>Update Product</h2>
 
-                        <form action="/user-add" method="post" class="w3-container">        
+                        <form action="/product-update" method="POST" class="w3-container">        
                             <div class="item">
-                                <label for="firstname">Firstname</label>
-                                <br />
-                                <input name="firstname" type="text" class="w3-input"/>
-                                <br />
-								<label for="lastname">Lastname</label>
-                                <br />
-                                <input name="lastname" type="text" class="w3-input"/>
-                                <br />
-                                <label for="username">Username</label>
-                                <br />
-                                <input name="username" type="text" class="w3-input"/>
-                                <br />
-                                <label for="password">Password</label>
-                                <br />
-                                <input name="password" type="text" class="w3-input"/>
+							
+								<input name="id" type="text" class="w3-input" value="<%= product.id %>"/>
 								<br />
-                                <button class="w3-btn w3-teal">Add</button>
+                                <label for="name">Product name</label>
+                                <br />
+                                <input name="description" type="text" class="w3-input" value="<%= product.name %>"/>
+                                <br />
+								<label for="lastname">Description </label>
+                                <br />
+                                <input name="description" type="text" class="w3-input" value="<%= product.description %>"/>
+                                <br />
+                                <label for="price">Price</label>
+                                <br />
+                                <input name="price" type="text" class="w3-input" value="<%= product.price %>"/>
+                                <br />
+                                <button class="w3-btn w3-teal">Update</button>
                             </div>
                         </form>
                     </div>
