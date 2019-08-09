@@ -12,16 +12,16 @@ $ npm install -g express-generator
 ```
 Installs express-generator globally 
 See [here](http://expressjs.com/en/starter/generator.html)
+
 ```
 $ npm init
 $ npm install mongodb --save 
 $ npm install ejs --save
-$ npm install mongoose-currency --save //allows us to use type: Currency
+$ npm install mongoose-currency --save //allows us to use type: Currency if required
 $ npm install morgan
 $ npm install cookie-parser
 $ npm install body-parser
 ```
-
 
 To open a cmp prompt in current folder: When inside the folder in explorer, shift and right-click
 Gitignore file [info here](https://stackoverflow.com/questions/10744305/how-to-create-gitignore-file)

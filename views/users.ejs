@@ -21,7 +21,13 @@
 							<li>Admin status: <%= user.admin %></li>
 							<a href="/user/<%= user._id %>" class="w3-button w3-teal" >show</a>
 							<a href="/user-update/<%= user._id %>" class="w3-button w3-teal" >update</a>
+							
+							<% if(user.admin){ %>
+							
 							<a href="/user-delete/<%= user._id %>" class="w3-button w3-teal" >delete</a>
+							<% }else { %>
+							<a href="#" class="w3-button w3-teal" >can't delete</a>
+							<% }; %>
                         </ul>
 						<% }); %> 
                     </div>

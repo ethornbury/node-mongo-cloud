@@ -1,15 +1,17 @@
-const express = require('express');
+const express  = require('express');
 const mongoose = require('mongoose');
-const config = require('config');
+const config   = require('config');
 var cookieParser = require('cookie-parser');
-var path = require('path');
-var logger = require('morgan');
-var bodyParser  = require("body-parser"); //allows req.body.id etc
+var path  		 = require('path');
+var logger  	 = require('morgan');
+var bodyParser   = require("body-parser"); //allows req.body.id etc
 
 const app = express();
 const router = express.Router();
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
 // view engine setup
 app.use(express.static("views"));       // Allow access to content of views folder
 app.use(express.static("scripts"));     // Allow access to scripts folder
@@ -35,7 +37,7 @@ mongoose.connect(db, {
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-/* GET home page. */
+// GET home page. now in routes folder
 //app.get('/', function(req, res, next) {
 //  res.render('index.ejs', { title: 'Express' });
 //});
@@ -47,7 +49,7 @@ app.get('/users', function(req, res) {
 			console.log(err);
 		}else{
 			console.log(user);
-			res.render('users', {data: user, title: 'Users'})
+			res.render('users', {data: user, title: 'Users list'})
 		}
 	});
 });
@@ -80,7 +82,7 @@ app.get('/user/:id', function(req, res) {
 			console.log(err);
 		}else{
 			console.log(user);
-			res.render('user-show', {user: user})
+			res.render('user-show', {user: user, title: 'Show user'})
 		}
 	});
 });
@@ -115,19 +117,18 @@ app.get('/user-update/:id', function(req, res) {
 			console.log(err);
 		}else{
 			console.log(user);
-			res.render('user-update', {user: user})
+			res.render('user-update', {user: user, title: 'User update page'})
 		}
 	});
 
 	console.log('user id', req.params.id);
 });
 
-app.post('/user-update/:id', function(req, res){
-	
+app.post('/user-update', function(req, res){
 	console.log('user-update post function');
-	let id = req.params.id;
-	console.log('User: ', req.params.id);	
-	User.findByIdAndUpdate({_id: req.params.id},
+	//let id = req.body.id;
+	console.log('User: ', req.body.id);	//get the info from the ejs page?
+	User.findByIdAndUpdate({"_id": req.body.id},
 		{$set: {
 			firstname: req.body.firstname, 
 			lastname: req.body.lastname,
@@ -145,7 +146,7 @@ app.post('/user-update/:id', function(req, res){
 		
 });
 	
-app.get('*', function(req, res) {  res.render('error');});
+app.get('*', function(req, res) {  res.render('error', {title: 'Hell man, what happened?!'});});
 
 // We need to set the requirements for the application to run
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0" , function(){
