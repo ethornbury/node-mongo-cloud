@@ -47,6 +47,11 @@ mongoose.connect(db, {
 //  res.render('index.ejs', { title: 'Express' });
 //});
 
+// GET about page. 
+app.get('/about', function(req, res, next) {
+  res.render('about.ejs', { title: 'About this app' });
+});
+
 //----- USER ROUTES
 app.get('/users', function(req, res) {
 	console.log('made it here to the /user function');
