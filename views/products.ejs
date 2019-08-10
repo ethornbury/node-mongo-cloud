@@ -18,7 +18,7 @@
 							<li>ID: <%= product._id %></li>
 							<li>Product name: <%= product.name %></li>							
 							<li>Description: <%= product.description %></li>
-							<li>Price: <%= product.price %></li>
+							<li>Price: &euro;<%= product.price %></li>
 							<a href="/product/<%= product._id %>" class="w3-button w3-teal" >show</a>
 							<a href="/product-update/<%= product._id %>" class="w3-button w3-teal" >update</a>
 										
@@ -29,12 +29,11 @@
                     </div>
                     <div class="w3-col l3">
                         <h2>A List</h2>
-                        <ul>
-
-                        </ul>
+                        
                     </div>
                     <div class="w3-col l3">
                         <h2>Another thing here</h2>
+						<a href="/product-add" class="w3-teal w3-button">Add product</a>
 
                     </div>
                 </div>

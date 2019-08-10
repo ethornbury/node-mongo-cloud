@@ -75,6 +75,7 @@ app.post('/user-add', (req, res) => {
 	User.create(newUser, (err, createdUser)=>{
 		if(err){
 			console.log(err);
+			res.redirect('/users');
 		}else{
 			res.redirect('/users');
 		}
@@ -153,6 +154,13 @@ app.post('/user-update', function(req, res){
 });
 
 // ---- PRODUCT ROUTES
+
+const formatter = new Intl.NumberFormat('it-IT', {
+  style: 'currency',
+  currency: 'EUR',
+  minimumFractionDigits: 2
+});
+
 app.get('/products', function(req, res) {
 	console.log('made it here to the /products function');
 	Product.find({}, function(err, product){
