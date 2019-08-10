@@ -188,6 +188,7 @@ app.post('/product-add', (req, res) => {
 	Product.create(newProduct, (err, createdProduct)=>{
 		if(err){
 			console.log(err);
+			res.redirect('/products');
 		}else{
 			res.redirect('/products');
 		}
