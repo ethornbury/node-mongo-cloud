@@ -18,15 +18,15 @@
                             <div class="item">
                                 <label for="name"> Product name</label>
                                 <br />
-                                <input name="name" type="text" class="w3-input"/>
+                                <input name="name" type="text" class="w3-input", required title="You gotta give it a name Dude"/>
                                 <br />
-								<label for="description</">Description</label>
+								<label for="description">Description</label>
                                 <br />
-                                <input name="description</" type="text" class="w3-input"/>
+                                <input name="description" type="text" class="w3-input", required title="You gotta give it a description Dude"/>
                                 <br />
                                 <label for="price">Price</label>
                                 <br />
-                                <input name="price" type="numeric" class="w3-input"/>                                
+                                <input name="price" type="numeric" class="w3-input", required pattern="^\d*(\.\d{0,2})?$" title="What the fuck are you doing??"/>                                
 								<br />
                                 <button class="w3-btn w3-teal">Add</button>
                             </div>

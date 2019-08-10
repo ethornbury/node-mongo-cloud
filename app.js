@@ -53,6 +53,7 @@ app.get('/users', function(req, res) {
 	User.find({}, function(err, user){
 		if(err){
 			console.log(err);
+			res.render('error', {title: 'Hell man, what happened?!'});
 		}else{
 			console.log(user);
 			res.render('users', {data: user, title: 'Users list'})
@@ -75,7 +76,8 @@ app.post('/user-add', (req, res) => {
 	User.create(newUser, (err, createdUser)=>{
 		if(err){
 			console.log(err);
-			res.redirect('/users');
+			//res.redirect('/users');
+			res.render('error', {title: 'Hell man, what happened?!'});
 		}else{
 			res.redirect('/users');
 		}
@@ -87,6 +89,7 @@ app.get('/user/:id', function(req, res) {
 	User.findById({"_id":req.params.id}, function(err, user){
 		if(err){
 			console.log(err);
+			res.render('error', {title: 'Hell man, what happened?!'});
 		}else{
 			console.log(user);
 			res.render('user-show', {user: user, title: 'Show user'})
@@ -107,6 +110,7 @@ app.get('/user-delete/:id', function(req, res){
 		User.findByIdAndRemove({"_id":req.params.id}, function(err, user){
 			if(err){
 				console.log(err);
+				res.render('error', {title: 'Hell man, what happened?!'});
 			}else{		
 				console.log('User: '+ req.params.id+" deleted");
 			}
@@ -122,6 +126,7 @@ app.get('/user-update/:id', function(req, res) {
 	User.findById({"_id":req.params.id}, function(err, user){
 		if(err){
 			console.log(err);
+			res.render('error', {title: 'Hell man, what happened?!'});
 		}else{
 			console.log(user);
 			res.render('user-update', {user: user, title: 'User update page'})
@@ -145,8 +150,9 @@ app.post('/user-update', function(req, res){
 		}, function (err, result) {
 			if (err) {
 			  console.log(err);
+			  res.render('error', {title: 'Hell man, what happened?!'});
 			} else {
-			 console.log("Post Updated successfully");
+			 console.log("Post request for user updated successfully");
 			 res.redirect('/users');
 			}		
 		})
@@ -155,17 +161,12 @@ app.post('/user-update', function(req, res){
 
 // ---- PRODUCT ROUTES
 
-const formatter = new Intl.NumberFormat('it-IT', {
-  style: 'currency',
-  currency: 'EUR',
-  minimumFractionDigits: 2
-});
-
 app.get('/products', function(req, res) {
 	console.log('made it here to the /products function');
 	Product.find({}, function(err, product){
 		if(err){
 			console.log(err);
+			res.render('error', {title: 'Hell man, what happened?!'});
 		}else{
 			console.log(product);
 			res.render('products', {data: product, title: 'Products listing'})
@@ -182,13 +183,13 @@ app.get('/product-add', function(req, res) {
 app.post('/product-add', (req, res) => {
 	let name = req.body.name;
 	let description = req.body.description;
-	let price = req.body.price;
-
+	let price = parseFloat(req.body.price).toFixed(2); //parse the price to 2 places of decimal tho there html5 validation on the page
 	let newProduct = {name: name, description: description, price: price}
 	Product.create(newProduct, (err, createdProduct)=>{
 		if(err){
 			console.log(err);
-			res.redirect('/products');
+			res.render('error', {title: 'Hell man, what happened?!'});
+			//res.redirect('/products');
 		}else{
 			res.redirect('/products');
 		}
@@ -200,6 +201,7 @@ app.get('/product/:id', function(req, res) {
 	Product.findById({"_id":req.params.id}, function(err, product){
 		if(err){
 			console.log(err);
+			res.render('error', {title: 'Hell man, what happened?!'});
 		}else{
 			console.log(product);
 			res.render('product-show', {product: product, title: 'Show Product'})
@@ -213,13 +215,14 @@ app.get('/product-delete/:id', function(req, res){
 	let id = req.params.id;
 	if (id === null) {
         var err = new Error('Product ' + id + ' does not exist!');
-        err.status = 403;
-        return next(err);
+		console.log(err);
+		res.render('error', {title: 'Hell man, what happened?!'});
       
      }else{
 		Product.findByIdAndRemove({"_id":req.params.id}, function(err, product){
 			if(err){
 				console.log(err);
+				res.render('error', {title: 'Hell man, what happened?!'});
 			}else{		
 				console.log('Product: '+ req.params.id+" deleted");
 			}
@@ -235,6 +238,7 @@ app.get('/product-update/:id', function(req, res) {
 	Product.findById({"_id":req.params.id}, function(err, product){
 		if(err){
 			console.log(err);
+			res.render('error', {title: 'Hell man, what happened?!'});
 		}else{
 			console.log(product);
 			res.render('product-update', {product: product, title: 'Product update page'})
@@ -250,20 +254,20 @@ app.post('/product-update', function(req, res){
 	console.log('Product: ', req.body.id);	//get the info from the ejs page?
 	Product.findByIdAndUpdate({"_id": req.body.id},
 		{$set: {
+			//"_id": req.body.id,
 			name: req.body.name, 
 			description: req.body.description,
-			price: req.body.price,
-			
+			price: req.body.price			
 			}
 		}, function (err, result) {
 			if (err) {
 			  console.log(err);
+			  res.render('error', {title: 'Hell man, what happened?!'});
 			} else {
 			 console.log("Product Updated successfully");
 			 res.redirect('/products');
-			}		
-		})
-		
+			}
+	});
 });
 
 	

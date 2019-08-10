@@ -29,7 +29,7 @@
                                 <br />
                                 <label for="price">Price</label>
                                 <br />
-                                <input name="price" type="numeric" class="w3-input" value="<%= product.price %>"/>
+                                <input name="price" type="numeric" class="w3-input" value="<%= product.price %>" required pattern="^\d*(\.\d{0,2})?$" title="What the fuck are you doing??"/>
                                 <br />
                                 <button class="w3-btn w3-teal">Update</button>
                             </div>
